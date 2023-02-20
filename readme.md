@@ -10,6 +10,8 @@ The essence of the text should remain unaltered, including any LaTeX commands.
 I request that you provide only the improved version of the text without any further explanations.
 ```
 
+![image](https://user-images.githubusercontent.com/25863658/220162062-21b0e6cc-acb4-457b-88af-5da7543593a2.png)
+
 ### Usage
 ```bash
 ### install
