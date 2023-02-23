@@ -10,19 +10,22 @@ The essence of the text should remain unaltered, including any LaTeX commands.
 I request that you provide only the improved version of the text without any further explanations.
 ```
 
-All of the following inputs are appended after the a prefix:
+All of the later inputs are appended after this prefix:
 ```
 Please refine the following text in academic English: \n
 ```
 
-![image](https://user-images.githubusercontent.com/25863658/220162062-21b0e6cc-acb4-457b-88af-5da7543593a2.png)
+![image](https://user-images.githubusercontent.com/25863658/220972178-f9a343ac-04aa-4367-bd23-31402801b56b.png)
+
 
 ### Usage
 ```bash
 ### install
 git clone https://github.com/ashawkey/chatgpt_please_improve_my_paper_writing.git
 cd chatgpt_please_improve_my_paper_writing
-pip install -r requirements.txt
+
+pip install --upgrade --upgrade-strategy eager revChatGPT
+pip install --upgrade gradio
 
 ### create a config.json and put your email/password/access_token into it.
 # please refer to https://github.com/acheong08/ChatGPT for a valid config.
@@ -32,3 +35,9 @@ cp config_example.json config.json
 ### run gradio
 python main.py
 ```
+
+[access token](https://chat.openai.com/api/auth/session)
+
+### Problems
+* It is advisable to manually verify LaTeX math formulas, as the automatic process may occasionally miss important symbols such as underscores, slashes, or tildes. 
+* In the event that the citation format appears incorrect, it is recommended to reset the chat and attempt the process again.
