@@ -39,6 +39,8 @@ openai.api_key = '...'
 python official.py
 ```
 
+![image](https://user-images.githubusercontent.com/25863658/222647748-91c6204e-3675-48ec-9c95-ddf492f98768.png)
+
 #### Unofficial
 [access token](https://chat.openai.com/api/auth/session)
 ```bash
