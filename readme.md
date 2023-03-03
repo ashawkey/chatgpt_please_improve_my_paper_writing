@@ -22,7 +22,11 @@ Please refine the following text in academic English: \n
 ### Usage
 
 #### Official
+
+Hosted on [hugging face space](https://huggingface.co/spaces/ashawkey/chatgpt_please_improve_my_paper_writing).
+
 [api keys](https://platform.openai.com/account/api-keys)
+
 ```bash
 ### install
 git clone https://github.com/ashawkey/chatgpt_please_improve_my_paper_writing.git

@@ -37,6 +37,13 @@ print(f'[INFO] Starting Gradio APP...')
 
 with gr.Blocks() as app:
     gr.Markdown("### ChatGPT, please help to improve my paper writing!")
+
+    # allow setting API key in gui
+    with gr.Row():
+        api_input = gr.Textbox(label="OPENAI_API_KEY", value=openai.api_key, lines=1)
+        def save_api(x): openai.api_key = x
+        api_input.change(save_api, api_input)
+
     simple_checkbox = gr.Checkbox(value=False, label='simple mode (only send the prefix prompt, 0.00142$ cheaper per query)')
 
     with gr.Row():
@@ -48,7 +55,6 @@ with gr.Blocks() as app:
             cost = gr.Number(label='cost of this query ($)')
 
     text_button = gr.Button("Submit")
-    
     text_button.click(submit, inputs=[text_input, simple_checkbox], outputs=[text_output, cost])
     
 app.launch()
