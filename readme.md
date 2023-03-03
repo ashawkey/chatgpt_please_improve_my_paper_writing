@@ -1,6 +1,6 @@
 ## ChatGPT, please help to improve my paper writing!
 
-**new**: official API is also supported.
+**NEW**: official API is also supported.
 
 A thin wrapper of chatgpt with a gradio interface for improving academic writing.
 
@@ -17,7 +17,6 @@ All of the later inputs are appended after this prefix:
 Please refine the following text in academic English: \n
 ```
 
-![image](https://user-images.githubusercontent.com/25863658/220972178-f9a343ac-04aa-4367-bd23-31402801b56b.png)
 
 
 ### Usage
@@ -59,6 +58,7 @@ cp config_example.json config.json
 python unofficial.py
 ```
 
+![image](https://user-images.githubusercontent.com/25863658/220972178-f9a343ac-04aa-4367-bd23-31402801b56b.png)
 
 ### Problems
 * It is advisable to manually verify LaTeX math formulas, as the automatic process may occasionally miss important symbols such as underscores, slashes, or tildes. 

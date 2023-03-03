@@ -37,7 +37,7 @@ print(f'[INFO] Starting Gradio APP...')
 
 with gr.Blocks() as app:
     gr.Markdown("### ChatGPT, please help to improve my paper writing!")
-    simple_checkbox = gr.Checkbox(value=False, label='simple mode (only send the prefix prompt, cheaper)')
+    simple_checkbox = gr.Checkbox(value=False, label='simple mode (only send the prefix prompt, 0.00142$ cheaper per query)')
 
     with gr.Row():
 
