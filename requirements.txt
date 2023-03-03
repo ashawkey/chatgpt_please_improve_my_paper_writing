@@ -1,2 +1,3 @@
 revChatGPT
 gradio
+openai>=0.27
