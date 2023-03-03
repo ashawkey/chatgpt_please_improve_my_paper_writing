@@ -17,8 +17,6 @@ All of the later inputs are appended after this prefix:
 Please refine the following text in academic English: \n
 ```
 
-
-
 ### Usage
 
 #### Official
@@ -38,6 +36,7 @@ pip install --upgrade gradio openai
 export OPENAI_API_KEY=...
 # or manually in official.py
 openai.api_key = '...'
+# or inside gradio GUI
 
 ### run gradio
 python official.py
