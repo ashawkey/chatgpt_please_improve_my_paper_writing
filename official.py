@@ -16,22 +16,19 @@ def submit(x, api, init_prompt, prefix_prompt, temperature, simple=False):
     openai.api_key = api 
     # restart a new conversation.
     if simple:
-        results = openai.ChatCompletion.create(
-            model="gpt-3.5-turbo-0301",
-            temperature=temperature,
-            messages=[
-                {"role": "user", "content": prefix_prompt + x.strip()},
-            ]
-        )
-    else:    
-        results = openai.ChatCompletion.create(
-            model="gpt-3.5-turbo-0301",
-            temperature=temperature,
-            messages=[
-                # chatgpt doesn't pay much attention to system content.
-                {"role": "user", "content": init_prompt + prefix_prompt + x.strip()},
-            ]
-        )
+        messages=[{"role": "user", "content": prefix_prompt + x.strip()},]
+    else:
+        messages=[
+            # chatgpt doesn't pay much attention to system content.
+            {"role": "user", "content": init_prompt + prefix_prompt + x.strip()},
+        ]
+
+    results = openai.ChatCompletion.create(
+        model="gpt-3.5-turbo-0301",
+        temperature=temperature,
+        messages=messages,
+    )
+    
     total_tokens = results['usage']['total_tokens']
     cost = (total_tokens / 1000) * 0.002 # in dollar
     response = results['choices'][0]['message']['content'].strip()
