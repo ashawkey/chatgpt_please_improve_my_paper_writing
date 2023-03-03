@@ -1,5 +1,7 @@
 ## ChatGPT, please help to improve my paper writing!
 
+**new**: official API is also supported.
+
 A thin wrapper of chatgpt with a gradio interface for improving academic writing.
 
 The initialization prompt (also rewritten with chatgpt):
@@ -19,6 +21,27 @@ Please refine the following text in academic English: \n
 
 
 ### Usage
+
+#### Official
+[api keys](https://platform.openai.com/account/api-keys)
+```bash
+### install
+git clone https://github.com/ashawkey/chatgpt_please_improve_my_paper_writing.git
+cd chatgpt_please_improve_my_paper_writing
+
+pip install --upgrade gradio openai
+
+### setup your API key 
+export OPENAI_API_KEY=...
+# or manually in official.py
+openai.api_key = '...'
+
+### run gradio
+python official.py
+```
+
+#### Unofficial
+[access token](https://chat.openai.com/api/auth/session)
 ```bash
 ### install
 git clone https://github.com/ashawkey/chatgpt_please_improve_my_paper_writing.git
@@ -33,10 +56,9 @@ pip install --upgrade gradio
 cp config_example.json config.json
 
 ### run gradio
-python main.py
+python unofficial.py
 ```
 
-[access token](https://chat.openai.com/api/auth/session)
 
 ### Problems
 * It is advisable to manually verify LaTeX math formulas, as the automatic process may occasionally miss important symbols such as underscores, slashes, or tildes. 
