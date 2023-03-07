@@ -2,7 +2,12 @@ import gradio as gr
 import json
 import os
 import openai
-from prompt import *
+
+INIT_PROMPT = """I would like to engage your services as an academic writing consultant to improve my writing. 
+I will provide you with text that requires refinement, and you will enhance it with more academic language and sentence structures.
+The essence of the text should remain unaltered, including any LaTeX commands."""
+
+PREFIX_PROMPT = "Please provide the improved version of the following text without any further explanations: \n"
 
 print(f'[INFO] Loading API key from env...')
 
@@ -11,7 +16,7 @@ openai.api_key = os.getenv("OPENAI_API_KEY")
 if openai.api_key is None:
     print('[WARN] OPENAI_API_KEY key not found in env')
 
-def submit(x, api, init_prompt, prefix_prompt, temperature, simple=False):
+def submit(x, api, model, init_prompt, prefix_prompt, temperature, simple=False):
     # reset api key everytime, so it won't save api unsafely...?
     openai.api_key = api 
     # restart a new conversation.
@@ -19,12 +24,12 @@ def submit(x, api, init_prompt, prefix_prompt, temperature, simple=False):
         messages=[{"role": "user", "content": prefix_prompt + x.strip()},]
     else:
         messages=[
-            # chatgpt doesn't pay much attention to system content.
-            {"role": "user", "content": init_prompt + prefix_prompt + x.strip()},
+            {"role": "system", "content": init_prompt},
+            {"role": "user", "content": prefix_prompt + x.strip()},
         ]
 
     results = openai.ChatCompletion.create(
-        model="gpt-3.5-turbo-0301",
+        model=model,
         temperature=temperature,
         messages=messages,
     )
@@ -41,6 +46,7 @@ with gr.Blocks() as app:
 
     # allow setting API key in gui
     api_input = gr.Textbox(label="OPENAI_API_KEY", value=openai.api_key, lines=1)
+    model_input = gr.Textbox(label="Model", value="gpt-3.5-turbo", lines=1)
 
     # allow changing prompts
     init_prompt_input = gr.Textbox(label="Init Prompt", value=INIT_PROMPT)
@@ -58,6 +64,6 @@ with gr.Blocks() as app:
             cost = gr.Number(label='cost of this query ($)')
 
     text_button = gr.Button("Submit")
-    text_button.click(submit, inputs=[text_input, api_input, init_prompt_input, prefix_prompt_input, temperature_input, simple_checkbox], outputs=[text_output, cost])
+    text_button.click(submit, inputs=[text_input, api_input, model_input, init_prompt_input, prefix_prompt_input, temperature_input, simple_checkbox], outputs=[text_output, cost])
     
 app.launch()
